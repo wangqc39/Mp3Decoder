@@ -1,0 +1,10 @@
+
+*.d
+insight/
+project/RVMDK/obj
+*.dbgconf
+*.scvd
+project/RVMDK/JLinkLog.txt
+*.ini
+*.lst
+*.map
