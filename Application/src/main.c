@@ -24,6 +24,7 @@ volatile int last_time = 0;
 
 
 void CopyFile(void);
+void ConvertTest(void);
        
 /*******************************************************************************
 * Function Name  : main
@@ -96,7 +97,7 @@ int main (void)
 
 
      //CopyFile();
-     //ConvertRes = ConvertMp3("1.mp3", "1.wav");
+     ConvertTest();
 
 
      GPIO_ResetBits(GPIOA, GPIO_Pin_10);
@@ -115,6 +116,15 @@ int main (void)
 //              last_time = time_now;
 //          }
       }
+}
+
+uint8_t ConvertFlag;
+void ConvertTest()
+{
+    if(ConvertFlag)
+    {
+        ConvertRes = ConvertMp3("1.mp3", "1.wav");
+    }
 }
 
 
