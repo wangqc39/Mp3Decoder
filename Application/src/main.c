@@ -131,7 +131,7 @@ void ConvertTest()
     if(ConvertFlag)
     {
         ConvertStart = SystemTick;
-        ConvertRes = ConvertMp3("1.mp3", "1.wav");
+        ConvertRes = ConvertMp3("2.mp3", "2.wav");
         ConvertStop = SystemTick;
         ConvertTime = ConvertStop - ConvertStart;
 

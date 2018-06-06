@@ -6,7 +6,7 @@
 
 #define f_tell(fp)		((fp)->fptr)
 
-#define FILE_READ_BUFFER_SIZE 8192
+#define FILE_READ_BUFFER_SIZE 2048
 static char file_read_buffer[FILE_READ_BUFFER_SIZE];
 volatile int bytes_left;
 char *read_ptr;
@@ -57,7 +57,7 @@ int ConvertMp3(char *Mp3FileName, char *WavFileName)
     char szArtist[120];
     char szTitle[120];
     unsigned int br, wr;
-    static int16_t WriteBuff[1024];
+    static int16_t WriteBuff[576];//22050²ÉÑùÂÊ
     int DecodeRes;
     int ret = 0;
     
@@ -68,7 +68,7 @@ int ConvertMp3(char *Mp3FileName, char *WavFileName)
     if(res != FR_OK)
         return -1;
 
-    res = f_open(&hWav, WavFileName, FA_CREATE_NEW | FA_WRITE);
+    res = f_open(&hWav, WavFileName, FA_CREATE_ALWAYS | FA_WRITE);
     if(res != FR_OK)
     {
         f_close(&hMp3);
