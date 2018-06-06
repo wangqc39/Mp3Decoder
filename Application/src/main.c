@@ -4,6 +4,7 @@
 #include "usb_lib.h"
 #include "ff.h"
 #include "SpiFlash.h"
+#include "Mp3Convert.h"
 
 
 
@@ -32,6 +33,7 @@ void CopyFile(void);
 * Return         : None
 *******************************************************************************/
 
+int ConvertRes;
 
 int main (void)
 {   
@@ -93,16 +95,11 @@ int main (void)
       Delay_Ms(1000);
 
 
-      
-     //res = f_mkdir("stm_dir");
-
-
-      
-     GPIO_ResetBits(GPIOA, GPIO_Pin_10);
-
-
      CopyFile();
+     //ConvertRes = ConvertMp3("1.mp3", "1.wav");
 
+
+     GPIO_ResetBits(GPIOA, GPIO_Pin_10);
 
       while (1)
       {
@@ -123,13 +120,13 @@ int main (void)
 
 /***********For Test************/
 uint8_t CopyFlag;
-uint8_t BuffTmp[SPI_FLASH_SECTOR_SIZE];
+uint8_t BuffTmp[FS_SECTOR_SIZE];
 uint32_t ReadCnt;
 uint32_t WriteCnt;
 void CopyFile()
 {
 
-    if(CopyFlag != 0)
+    if(CopyFlag == 0)
         return;
 
     res = f_open(&fsrc, "1.bin", FA_READ);
@@ -137,14 +134,14 @@ void CopyFile()
 
     do
     {
-        res = f_read(&fsrc, BuffTmp, SPI_FLASH_SECTOR_SIZE, &ReadCnt);
+        res = f_read(&fsrc, BuffTmp, FS_SECTOR_SIZE, &ReadCnt);
         if(res != FR_OK || ReadCnt <= 0)
         {
             break;
         }
         res = f_write(&fdst, BuffTmp, ReadCnt, &WriteCnt);
         
-    }while(ReadCnt == SPI_FLASH_SECTOR_SIZE);
+    }while(ReadCnt == FS_SECTOR_SIZE);
 
     f_close(&fsrc);
     f_close(&fdst);

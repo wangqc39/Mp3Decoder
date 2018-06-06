@@ -31,7 +31,7 @@ vu32 Block_Read_count = 0;
 vu32 Block_offset;
 vu32 Counter = 0;
 u32 i;
-u8 Data_Buffer[SPI_FLASH_SECTOR_SIZE]; /* 512 bytes*/
+u8 Data_Buffer[FS_SECTOR_SIZE]; /* 512 bytes*/
 
 /* Extern variables ----------------------------------------------------------*/
 extern u8 Bulk_Data_Buff[BULK_MAX_PACKET_SIZE];  /* data buffer*/
@@ -58,9 +58,9 @@ void Read_Memory(void)
   if (!Block_Read_count)
   {
     //MSD_ReadBlock(Data_Buffer, Memory_Offset, 512);
-    DataFlashReadData(Memory_Offset, Data_Buffer, SPI_FLASH_SECTOR_SIZE);
+    DataFlashReadData(Memory_Offset, Data_Buffer, FS_SECTOR_SIZE);
     UserToPMABufferCopy(Data_Buffer, ENDP1_TXADDR, BULK_MAX_PACKET_SIZE);
-    Block_Read_count = SPI_FLASH_SECTOR_SIZE - BULK_MAX_PACKET_SIZE;
+    Block_Read_count = FS_SECTOR_SIZE - BULK_MAX_PACKET_SIZE;
     Block_offset = BULK_MAX_PACKET_SIZE;
   }
   else
@@ -112,11 +112,11 @@ void Write_Memory(void)
   Memory_Offset += Data_Len;
   Transfer_Length -= Data_Len;
 
-  if (!(Transfer_Length % SPI_FLASH_SECTOR_SIZE))
+  if (!(Transfer_Length % FS_SECTOR_SIZE))
   {
     Counter = 0;
     //MSD_WriteBlock(Data_Buffer, Memory_Offset - 512, 512);
-    DataFlashWriteData(Memory_Offset - SPI_FLASH_SECTOR_SIZE, Data_Buffer, SPI_FLASH_SECTOR_SIZE);
+    DataFlashWriteData(Memory_Offset - FS_SECTOR_SIZE, Data_Buffer, FS_SECTOR_SIZE);
   }
 
   CSW.dDataResidue -= Data_Len;

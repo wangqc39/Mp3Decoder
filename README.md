@@ -16,3 +16,6 @@ USB MassStorage:
   
 FAT FS:
   Visit the MP3 file and write the WAV file when decoding.
+  
+  
+未增加Helix时，Code=19048  RO-data=580  RW-data=436  ZI-data=26916

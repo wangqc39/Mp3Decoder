@@ -10,6 +10,8 @@
 #define SPI_FLASH_BLOCK_SIZE			(64 * 1024)
 #define SPI_FLASH_SECTOR_SIZE			(4096)
 
+#define FS_SECTOR_SIZE					512
+
 //µÿ÷∑º∆À„
 #define BlockAddr(x)						((x) * SPI_FLASH_BLOCK_SIZE)
 #define SectorAddr(x)						((x) * SPI_FLASH_SECTOR_SIZE)
@@ -25,7 +27,7 @@ struct SpiFlashInfo
     uint32_t Ssid;
     uint32_t FlashBlockCnt;
     uint32_t FlashBlockSize;
-    uint32_t FlashSectorCnt;
+    uint32_t FsSectorCnt;
     uint32_t FlashSize;
     FunctionalState FlashStatus;
 };

@@ -161,7 +161,7 @@ void SpiFlashHwInit(void)
         //ReportError(ERROR_FLASH_INIT_ERROR);
         SpiFlash.FlashStatus = DISABLE;
     }
-    SpiFlash.FlashSectorCnt = SpiFlash.FlashBlockCnt * (SPI_FLASH_BLOCK_SIZE / SPI_FLASH_SECTOR_SIZE);
+    SpiFlash.FsSectorCnt = SpiFlash.FlashBlockCnt * (SPI_FLASH_BLOCK_SIZE / FS_SECTOR_SIZE);
     SpiFlash.FlashBlockSize = SPI_FLASH_BLOCK_SIZE;
     SpiFlash.FlashSize = SpiFlash.FlashBlockCnt * SpiFlash.FlashBlockSize;
   

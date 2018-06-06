@@ -135,7 +135,7 @@
 /* Number of volumes (logical drives) to be used. */
 
 
-#define	_MAX_SS		4096//512
+#define	_MAX_SS		512//4096//512
 /* Maximum sector size to be handled. (512/1024/2048/4096) */
 /* Usually set 512 for memory card and hard disk but 1024 for floppy disk, 2048 for MO disk */
 /* When _MAX_SS > 512, GET_SECTOR_SIZE must be implememted to disk_ioctl() */

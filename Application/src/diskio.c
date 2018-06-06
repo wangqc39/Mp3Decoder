@@ -97,12 +97,12 @@ DRESULT disk_read(
     if(count==1)            //1个sector的读操作      
     {                                                
         //res = SD_ReadSingleBlock(sector, buff);      
-        res  = DataFlashReadData(sector * SPI_FLASH_SECTOR_SIZE, buff, SPI_FLASH_SECTOR_SIZE);
+        res  = DataFlashReadData(sector * FS_SECTOR_SIZE, buff, FS_SECTOR_SIZE);
     }                                                
     else                    //多个sector的读操作     
     {                                                
         //res = SD_ReadMultiBlock(sector, buff, count);
-        res  = DataFlashReadData(sector * SPI_FLASH_SECTOR_SIZE, buff, SPI_FLASH_SECTOR_SIZE * count);
+        res  = DataFlashReadData(sector * FS_SECTOR_SIZE, buff, FS_SECTOR_SIZE * count);
     }                                                
 	/*
     do                           
@@ -157,11 +157,11 @@ DRESULT disk_write (
     if(count == 1)
     {
         //res = SD_WriteSingleBlock(sector, buff);
-        res = DataFlashWriteData(sector * SPI_FLASH_SECTOR_SIZE, (uint8_t *)buff, SPI_FLASH_SECTOR_SIZE);
+        res = DataFlashWriteData(sector * FS_SECTOR_SIZE, (uint8_t *)buff, FS_SECTOR_SIZE);
     }
     else
     {
-        res = DataFlashWriteData(sector * SPI_FLASH_SECTOR_SIZE, (uint8_t *)buff, SPI_FLASH_SECTOR_SIZE * count);
+        res = DataFlashWriteData(sector * FS_SECTOR_SIZE, (uint8_t *)buff, FS_SECTOR_SIZE * count);
     }
     // 返回值转换
     if(res == 0)
@@ -210,17 +210,17 @@ DRESULT disk_ioctl (
 //        SD_CS_DISABLE();
         break;
     case GET_SECTOR_SIZE:
-        *(WORD*)buff = SPI_FLASH_SECTOR_SIZE;
+        *(WORD*)buff = FS_SECTOR_SIZE;//SPI_FLASH_SECTOR_SIZE;
         res = RES_OK;
         break;
         
     case GET_BLOCK_SIZE:
-        *(WORD*)buff = SPI_FLASH_SECTOR_SIZE;
+        *(WORD*)buff = FS_SECTOR_SIZE;//SPI_FLASH_SECTOR_SIZE;
         res = RES_OK;
         break;
 
     case GET_SECTOR_COUNT:
-        *(DWORD*)buff = SpiFlash.FlashSectorCnt;
+        *(DWORD*)buff = SpiFlash.FsSectorCnt;
         res = RES_OK;
         break;
     default:

@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>FATFS+SPI2</TargetName>
+      <TargetName>Mp3Decoder</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060422::V5.06 update 4 (build 422)::ARMCC</pCCUsed>
@@ -48,7 +48,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\obj\</OutputDirectory>
-          <OutputName>FATFS+SPI2</OutputName>
+          <OutputName>Mp3Decoder</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -604,7 +604,7 @@
       <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.0.1" condition="ARMv6_7_8-M Device">
         <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="5.0.1"/>
         <targetInfos>
-          <targetInfo name="FATFS+SPI2"/>
+          <targetInfo name="Mp3Decoder"/>
         </targetInfos>
       </component>
     </components>

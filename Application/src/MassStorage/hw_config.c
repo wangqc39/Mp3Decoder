@@ -169,9 +169,9 @@ void Get_Medium_Characteristics(void)
 
 //  Mass_Memory_Size = (Mass_Block_Count * Mass_Block_Size);
 
-  Mass_Block_Count = SpiFlash.FlashSectorCnt;//temp1 * temp2;
+  Mass_Block_Count = SpiFlash.FsSectorCnt;//temp1 * temp2;
 
-  Mass_Block_Size =  SPI_FLASH_SECTOR_SIZE;// 1 << MSD_csd.RdBlockLen;
+  Mass_Block_Size =  FS_SECTOR_SIZE;// 1 << MSD_csd.RdBlockLen;
 
   Mass_Memory_Size = (Mass_Block_Count * Mass_Block_Size);
 
