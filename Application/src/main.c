@@ -102,7 +102,7 @@ int main (void)
       res = f_mount(0, &fs);
       Delay_Ms(1000);
 
-
+      //FlashTest();
 
      //GPIO_ResetBits(GPIOA, GPIO_Pin_10);
 

@@ -111,7 +111,7 @@ void SpiFlashHwInit(void)
     SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
     SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;
     SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
-    SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;
+    SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;//SPI_BaudRatePrescaler_2;
     SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
     SPI_InitStructure.SPI_CRCPolynomial = 7;
     SPI_Init(FLASH_SPI, &SPI_InitStructure);
@@ -181,9 +181,17 @@ int32_t CheckEmpty(uint8_t *buff, int32_t cnt)
     return 0;
 }
 
+void ClearSpiRxFifo()
+{
+    *(volatile uint8_t *)SPI_DR_Address;
+    *(volatile uint8_t *)SPI_DR_Address;
+    *(volatile uint8_t *)SPI_DR_Address;
+    *(volatile uint8_t *)SPI_DR_Address;
+}
+
 u8 spi_write(u8 data)
 {
-  int i = 0xfff;
+  int i = 0xffff;
   /* Loop while DR register in not emplty */
   while (SPI_I2S_GetFlagStatus(FLASH_SPI, SPI_I2S_FLAG_TXE) == RESET);
 
@@ -217,7 +225,7 @@ void WaitFlashFree()
 {
     uint8_t ucResult;
 
-    //ClearSpiRxFifo();
+    ClearSpiRxFifo();
     SPI_FLASH_CS_LOW();  
     do
     {
@@ -439,10 +447,29 @@ uint32_t DataFlashWriteData(uint32_t Addr, uint8_t *ucWrDataBuff, uint32_t DataC
         }
         WritePtr += ThisWriteCnt;
         Addr += ThisWriteCnt;
-        DataCnt -= ThisWriteCnt;
+        DataCnt -= ThisWriteCnt; 
     }
 
     return DataCnt;
+}
+
+uint8_t ReadBuff[SPI_FLASH_SECTOR_SIZE];
+uint8_t WriteBuff[SPI_FLASH_SECTOR_SIZE];
+uint32_t ErrorCnt;
+void FlashTest()
+{
+    int i, j;
+    for(i = 0; i < 10; i++)
+    {
+        memset(WriteBuff, i, SPI_FLASH_SECTOR_SIZE);
+        DataFlashWriteData(SPI_FLASH_SECTOR_SIZE * i, WriteBuff, SPI_FLASH_SECTOR_SIZE);
+        DataFlashReadData(SPI_FLASH_SECTOR_SIZE * i, ReadBuff, SPI_FLASH_SECTOR_SIZE);
+        for(j = 0; j < SPI_FLASH_SECTOR_SIZE; j++)
+        {
+            if(ReadBuff[j] != i)
+                ErrorCnt++;
+        }
+    }
 }
 
 
