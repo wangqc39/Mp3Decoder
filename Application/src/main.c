@@ -95,7 +95,7 @@ int main (void)
       Delay_Ms(1000);
 
 
-     CopyFile();
+     //CopyFile();
      //ConvertRes = ConvertMp3("1.mp3", "1.wav");
 
 
@@ -119,32 +119,32 @@ int main (void)
 
 
 /***********For Test************/
-uint8_t CopyFlag;
-uint8_t BuffTmp[FS_SECTOR_SIZE];
-uint32_t ReadCnt;
-uint32_t WriteCnt;
-void CopyFile()
-{
+//uint8_t CopyFlag;
+//uint8_t BuffTmp[FS_SECTOR_SIZE];
+//uint32_t ReadCnt;
+//uint32_t WriteCnt;
+//void CopyFile()
+//{
 
-    if(CopyFlag == 0)
-        return;
+//    if(CopyFlag == 0)
+//        return;
 
-    res = f_open(&fsrc, "1.bin", FA_READ);
-    res = f_open(&fdst, "2.bin", FA_CREATE_NEW | FA_WRITE);
+//    res = f_open(&fsrc, "1.bin", FA_READ);
+//    res = f_open(&fdst, "2.bin", FA_CREATE_NEW | FA_WRITE);
 
-    do
-    {
-        res = f_read(&fsrc, BuffTmp, FS_SECTOR_SIZE, &ReadCnt);
-        if(res != FR_OK || ReadCnt <= 0)
-        {
-            break;
-        }
-        res = f_write(&fdst, BuffTmp, ReadCnt, &WriteCnt);
-        
-    }while(ReadCnt == FS_SECTOR_SIZE);
+//    do
+//    {
+//        res = f_read(&fsrc, BuffTmp, FS_SECTOR_SIZE, &ReadCnt);
+//        if(res != FR_OK || ReadCnt <= 0)
+//        {
+//            break;
+//        }
+//        res = f_write(&fdst, BuffTmp, ReadCnt, &WriteCnt);
+//        
+//    }while(ReadCnt == FS_SECTOR_SIZE);
 
-    f_close(&fsrc);
-    f_close(&fdst);
-}
+//    f_close(&fsrc);
+//    f_close(&fdst);
+//}
 
 

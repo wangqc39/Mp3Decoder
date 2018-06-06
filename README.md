@@ -19,3 +19,4 @@ FAT FS:
   
   
 未增加Helix时，Code=19048  RO-data=580  RW-data=436  ZI-data=26916
+将扇区大小从4k改为512字节后，Code=13196  RO-data=580  RW-data=436  ZI-data=8484
