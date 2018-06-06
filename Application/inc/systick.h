@@ -9,5 +9,7 @@ void Delay_Ms(u32 nTime);
 void TimingDelay_Decrement(void);
 
 
+extern volatile unsigned int SystemTick;
+
 #endif
 

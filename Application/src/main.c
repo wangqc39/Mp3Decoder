@@ -5,6 +5,7 @@
 #include "ff.h"
 #include "SpiFlash.h"
 #include "Mp3Convert.h"
+#include "Systick.h"
 
 
 
@@ -36,6 +37,8 @@ void ConvertTest(void);
 
 int ConvertRes;
 
+uint8_t EraseFlashFlag;
+
 int main (void)
 {   
 //可调试用----------------------------------------------------------------------
@@ -53,6 +56,10 @@ int main (void)
     TIM2_Config();  //配置定时器2
 
     SpiFlashHwInit();
+
+
+    if(EraseFlashFlag)
+        ChipErase();
 
     
     GPIO_SetBits(GPIOA, GPIO_Pin_10);
@@ -96,11 +103,8 @@ int main (void)
       Delay_Ms(1000);
 
 
-     //CopyFile();
-     ConvertTest();
 
-
-     GPIO_ResetBits(GPIOA, GPIO_Pin_10);
+     //GPIO_ResetBits(GPIOA, GPIO_Pin_10);
 
       while (1)
       {
@@ -115,15 +119,23 @@ int main (void)
 
 //              last_time = time_now;
 //          }
+           ConvertTest();
       }
 }
 
 uint8_t ConvertFlag;
+uint32_t ConvertTime;
 void ConvertTest()
 {
+    uint32_t ConvertStart, ConvertStop;;
     if(ConvertFlag)
     {
+        ConvertStart = SystemTick;
         ConvertRes = ConvertMp3("1.mp3", "1.wav");
+        ConvertStop = SystemTick;
+        ConvertTime = ConvertStop - ConvertStart;
+
+        ConvertFlag = 0;
     }
 }
 

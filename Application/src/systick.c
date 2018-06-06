@@ -1,6 +1,8 @@
 
 #include "systick.h"
 
+volatile unsigned int SystemTick;
+
 /*******************************************************************************
 * Function Name  : SysTick_Config
 * Description    : Configures SysTick
@@ -37,17 +39,20 @@ void SysTick_Config(void)
 *******************************************************************************/
 void Delay_Ms(u32 nTime)
 {
-    /* Enable the SysTick Counter */
-    SysTick_CounterCmd(SysTick_Counter_Enable);
-  
-    TimingDelay = nTime;
+//    /* Enable the SysTick Counter */
+//    SysTick_CounterCmd(SysTick_Counter_Enable);
+//  
+//    TimingDelay = nTime;
 
-    while(TimingDelay != 0);
+//    while(TimingDelay != 0);
 
-    /* Disable SysTick Counter */
-    SysTick_CounterCmd(SysTick_Counter_Disable);
-    /* Clear SysTick Counter */
-    SysTick_CounterCmd(SysTick_Counter_Clear);
+//    /* Disable SysTick Counter */
+//    SysTick_CounterCmd(SysTick_Counter_Disable);
+//    /* Clear SysTick Counter */
+//    SysTick_CounterCmd(SysTick_Counter_Clear);
+    unsigned int StartTick = SystemTick;
+
+    while(SystemTick <= StartTick + nTime);
 }
 
 
@@ -60,9 +65,6 @@ void Delay_Ms(u32 nTime)
 *******************************************************************************/
 void TimingDelay_Decrement(void)
 {
-    if (TimingDelay != 0x00)
-    { 
-      TimingDelay--;
-    }
+    SystemTick++;
 }
 
