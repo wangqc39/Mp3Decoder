@@ -310,7 +310,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>4</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Application\inc;..\..\Libraries\FWLib\inc;..\..\Application\inc\MassStorage;..\..\Libraries\USBLib\inc;..\..\Application\src\MassStorage</IncludePath>
+              <IncludePath>..\..\Application\inc;..\..\Libraries\FWLib\inc;..\..\Application\inc\MassStorage;..\..\Libraries\USBLib\inc;..\..\Application\src\MassStorage;..\..\Application\Helix;..\..\Application\Helix\real;..\..\Application\Helix\pub</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -413,6 +413,11 @@
               <FileName>SpiFlash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Application\src\MassStorage\SpiFlash.c</FilePath>
+            </File>
+            <File>
+              <FileName>Mp3Convert.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\src\Mp3Convert.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -588,6 +593,86 @@
               <FileName>usb_scsi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Application\src\MassStorage\usb_scsi.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Helix</GroupName>
+          <Files>
+            <File>
+              <FileName>mp3dec.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\mp3dec.c</FilePath>
+            </File>
+            <File>
+              <FileName>mp3tabs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\mp3tabs.c</FilePath>
+            </File>
+            <File>
+              <FileName>bitstream.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\bitstream.c</FilePath>
+            </File>
+            <File>
+              <FileName>buffers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\buffers.c</FilePath>
+            </File>
+            <File>
+              <FileName>dct32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\dct32.c</FilePath>
+            </File>
+            <File>
+              <FileName>dequant.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\dequant.c</FilePath>
+            </File>
+            <File>
+              <FileName>dqchan.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\dqchan.c</FilePath>
+            </File>
+            <File>
+              <FileName>huffman.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\huffman.c</FilePath>
+            </File>
+            <File>
+              <FileName>hufftabs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\hufftabs.c</FilePath>
+            </File>
+            <File>
+              <FileName>imdct.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\imdct.c</FilePath>
+            </File>
+            <File>
+              <FileName>polyphase.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\polyphase.c</FilePath>
+            </File>
+            <File>
+              <FileName>scalfact.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\scalfact.c</FilePath>
+            </File>
+            <File>
+              <FileName>stproc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\stproc.c</FilePath>
+            </File>
+            <File>
+              <FileName>subband.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\subband.c</FilePath>
+            </File>
+            <File>
+              <FileName>trigtabs_fixpt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Application\Helix\real\trigtabs_fixpt.c</FilePath>
             </File>
           </Files>
         </Group>
