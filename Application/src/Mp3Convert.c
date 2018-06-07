@@ -105,40 +105,40 @@ int ConvertMp3(char *Mp3FileName, char *WavFileName)
 
         //对一帧MP3数据进行解码，并写入到Wav文件中
         DecodeRes = DecodeOneFrame(WriteBuff);
-//        if(DecodeRes > 0)
-//        {
-//            res = f_write(&hWav, WriteBuff, DecodeRes * 2, &wr);
-//            if(res != FR_OK)
-//            {
-//                ret = -3;
-//                goto end;
-//            }
-//        }
-//        else if(DecodeRes < 0)
-//        {
-//            ret = -4;
-//            goto end;
-//        }
+        if(DecodeRes > 0)
+        {
+            res = f_write(&hWav, WriteBuff, DecodeRes * 2, &wr);
+            if(res != FR_OK)
+            {
+                ret = -3;
+                goto end;
+            }
+        }
+        else if(DecodeRes < 0)
+        {
+            ret = -4;
+            goto end;
+        }
     }
 
     //将剩余的MP3的数据转换成WAV数据
     while(bytes_left > 0)
     {
         DecodeRes = DecodeOneFrame(WriteBuff);
-//        if(DecodeRes > 0)
-//        {
-//            res = f_write(&hWav, WriteBuff, DecodeRes * 2, &wr);
-//            if(res != FR_OK)
-//            {
-//                ret = -5;
-//                goto end;
-//            }
-//        }
-//        else if(DecodeRes < 0)
-//        {
-//            ret = -6;
-//            goto end;
-//        }
+        if(DecodeRes > 0)
+        {
+            res = f_write(&hWav, WriteBuff, DecodeRes * 2, &wr);
+            if(res != FR_OK)
+            {
+                ret = -5;
+                goto end;
+            }
+        }
+        else if(DecodeRes < 0)
+        {
+            ret = -6;
+            goto end;
+        }
     }
 
 
